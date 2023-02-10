@@ -39,9 +39,20 @@ private:
     static LOG_LEVEL s_level_;
 };  
 
-#define LOG_WARN tulun::Logger(tulun::LOG_LEVEL::WARN,__FILE__,__func__,__LINE__).stream()
+#define LOG_TRACE if(tulun::Logger::getLogLevel()<= tulun::LOG_LEVEL::TRACE) \
+    tulun::Logger(tulun::LOG_LEVEL::TRACE,__FILE__,__func__, __LINE__).stream()
 
-#define LOG_FATAL tulun::Logger(tulun::LOG_LEVEL::FATAL,__FILE__,__func__,__LINE__).stream()
+#define LOG_DEBUG if(tulun::Logger::getLogLevel()<= tulun::LOG_LEVEL::DEBUG) \
+    tulun::Logger(tulun::LOG_LEVEL::DEBUG,__FILE__,__func__, __LINE__).stream()
+
+#define LOG_INFO if(tulun::Logger::getLogLevel()<= tulun::LOG_LEVEL::INFO) \
+    tulun::Logger(tulun::LOG_LEVEL::INFO, __FILE__, __func__,__LINE__).stream()
+
+#define LOG_WARN tulun::Logger(tulun::LOG_LEVEL::WARN, __FILE__ ,__func__,__LINE__).stream()
+
+#define LOG_ERROR tulun::Logger(tulun::LOG_LEVEL::ERROR, __FILE__,__func__,__LINE__).stream()
+
+#define LOG_FATAL tulun::Logger(tulun::LOG_LEVEL::FATAL, __FILE__,__func__,__LINE__).stream()
 
 
 

@@ -16,7 +16,8 @@ namespace tulun
         //按不同的两种格式输出时间
 		std::string toString() const;
 		std::string toFormattedString(bool showMicroseconds = true) const;
-		bool valid() const;
+		std::string toFormattedFile() const;
+        bool valid() const;
 		 // for internal usage.
 		std::int64_t microSecondsSinceEpoch() const ;
 		time_t secondsSinceEpoch() const;
