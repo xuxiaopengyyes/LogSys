@@ -4,6 +4,19 @@
 
 namespace tulun
 {
+tulun::LOG_LEVEL initLogLevel()
+{
+    if(::getenv("TULUN::LOG_TRACE"))
+    {
+        return tulun::LOG_LEVEL::TRACE;
+    }else if(::getenv("TULUN::LOG_DEBUG"))
+    {
+        return LOG_LEVEL::DEBUG;
+    }else
+    {
+        return tulun::LOG_LEVEL::INFO;
+    }
+}
 void defaultOutput(const string &msg)
 {
     size_t n = fwrite(msg.c_str(),1,msg.size(),stdout);
@@ -62,6 +75,6 @@ LOG_LEVEL Logger::getLogLevel()
     return  s_level_;
 }
     
-LOG_LEVEL Logger::s_level_ = LOG_LEVEL::INFO;  // 日志级别
+LOG_LEVEL Logger::s_level_ = initLogLevel();  // 日志级别
 
 }
